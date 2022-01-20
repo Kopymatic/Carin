@@ -113,7 +113,7 @@ bot.on("ready", async () => {
             ],
         });
 
-        //Set firstready to false so we dont do all this again
+        //Set firstReady to false so we dont do all this again
         firstReady = false;
     }
 });
