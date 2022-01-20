@@ -44,6 +44,24 @@ export function setUpModels() {
         { sequelize: database }
     );
 
+    Reminder.init(
+        {
+            userID: {
+                type: DataTypes.TEXT,
+                allowNull: false,
+            },
+            time: {
+                type: DataTypes.DATE,
+                allowNull: false,
+            },
+            text: {
+                type: DataTypes.TEXT,
+                allowNull: false,
+            },
+        },
+        { sequelize: database }
+    );
+
     //Sync all the database models
     MoodLog.sync().then(
         () => console.log("MoodLog model success!"),
@@ -53,6 +71,11 @@ export function setUpModels() {
     CommandStats.sync().then(
         () => console.log("CommandStats model success!"),
         (err) => console.error("CommandStats model error!", err)
+    );
+
+    Reminder.sync().then(
+        () => console.log("Reminder model success!"),
+        (err) => console.error("Reminder model error!", err)
     );
 }
 
@@ -72,6 +95,17 @@ export class CommandStats extends Model {
     public commandName: string;
     public allTimeUses: number;
     public recentUses: number;
+
+    public readonly createdAt!: Date;
+    public readonly updatedAt!: Date;
+}
+
+export class Reminder extends Model {
+    // Specifying data types on the class itself so the compiler doesnt complain
+    public id: number;
+    public userID: string;
+    public time: Date;
+    public text: string;
 
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
