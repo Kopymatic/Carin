@@ -1,6 +1,6 @@
 import { MoodLog } from "../models";
 import { CommandOptionTypes, ResponseFlags } from "../utils/CommandUtils";
-import SlashCommand from "./SlashCommand";
+import SlashCommand from "../utils/SlashCommand";
 
 export default class DeleteLogCmd extends SlashCommand {
     constructor() {

@@ -1,7 +1,7 @@
 import Eris from "eris";
 import { MoodLog } from "../models";
 import { ResponseFlags } from "../utils/CommandUtils";
-import SlashCommand from "./SlashCommand";
+import SlashCommand from "../utils/SlashCommand";
 import global from "../global";
 import { EphemerealButtonPaginator } from "../utils/EphemeralButtonPaginator";
 

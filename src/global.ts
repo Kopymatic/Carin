@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/prefer-namespace-keyword */
-/* eslint-disable @typescript-eslint/no-namespace */
-import { Client, CommandClient } from "eris";
+import { Client } from "eris";
 import { Sequelize } from "sequelize";
 import config from "./resources/config.json";
 

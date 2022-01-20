@@ -1,6 +1,6 @@
 import Eris from "eris";
 import { CommandStats } from "../models";
-import SlashCommand from "./SlashCommand";
+import SlashCommand from "../utils/SlashCommand";
 import global from "../global";
 import { ButtonPaginator } from "../utils/ButtonPaginator";
 

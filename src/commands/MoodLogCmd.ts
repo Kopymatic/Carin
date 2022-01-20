@@ -1,6 +1,6 @@
 import { MoodLog } from "../models";
 import { CommandOptionTypes, ResponseFlags } from "../utils/CommandUtils";
-import SlashCommand from "./SlashCommand";
+import SlashCommand from "../utils/SlashCommand";
 import global from "../global";
 
 export default class MoodLogCmd extends SlashCommand {

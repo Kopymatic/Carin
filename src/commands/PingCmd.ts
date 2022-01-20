@@ -1,4 +1,4 @@
-import SlashCommand from "./SlashCommand";
+import SlashCommand from "../utils/SlashCommand";
 
 export default class Ping extends SlashCommand {
     constructor() {
