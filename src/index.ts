@@ -6,6 +6,7 @@ import { Sequelize } from "sequelize";
 import { CommandTypes } from "./utils/CommandUtils";
 import { CommandStats, Reminder, setUpModels } from "./models";
 import ReminderCmd from "./commands/ReminderCmd";
+import QuoteCmd from "./commands/QuoteCmd";
 
 console.log("Loading...");
 //Log the configuration so when i run it i know whats going on
@@ -99,6 +100,12 @@ bot.on("ready", async () => {
                 ReminderCmd.remind(index);
             }, time);
         });
+
+        const api_url = "https://zenquotes.io/api/quotes/";
+        global.quotes = await QuoteCmd.getapi(api_url);
+        setInterval(async () => {
+            global.quotes = await QuoteCmd.getapi(api_url);
+        }, 3600000);
 
         //Set the absolute start time to now
         global.absoluteStartTime = Date.now();

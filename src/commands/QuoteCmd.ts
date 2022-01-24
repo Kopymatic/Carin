@@ -4,6 +4,8 @@ import SlashCommand from "../utils/SlashCommand";
 import global from "../global";
 import { Reminder } from "../models";
 import InteractionUtils from "../utils/InteratctionUtils";
+import axios from "axios";
+import { randomInt } from "crypto";
 
 export default class ReminderCmd extends SlashCommand {
     constructor() {
@@ -12,43 +14,30 @@ export default class ReminderCmd extends SlashCommand {
         this.description = "Sends a random quote";
         let min: any = 1;
         let max: any = 10080;
-        this.options = [
-            // {
-            //     name: "time",
-            //     description: "The time (in minutes) until the reminder goes off.",
-            //     type: CommandOptionTypes.NUMBER,
-            //     required: true,
-            //     min_value: min,
-            //     max_value: max,
-            // },
-            // {
-            //     name: "text",
-            //     description: "The text to be sent with the reminder",
-            //     type: CommandOptionTypes.STRING,
-            //     required: true,
-            // },
-        ];
+        this.options = [];
         this.onRun = async (interaction) => {
             let options = InteractionUtils.getOptions(interaction);
             let user = InteractionUtils.getUser(interaction);
 
-            const api_url = "https://zenquotes.io/api/quotes/";
+            let quote: any = global.quotes[randomInt(global.quotes.length)];
 
-            this.getapi(api_url);
+            interaction.createMessage({
+                embeds: [
+                    {
+                        description: `${quote.q}\n-${quote.a}`,
+                        footer: {
+                            text: "Quotes provided by https://zenquotes.io/",
+                        },
+                        color: global.defaultColor,
+                    },
+                ],
+            });
         };
     }
 
-    async getapi(url: string) {
-        const response = await fetch(url);
-        var data = await response.json();
-        console.log(data);
-    }
-
-    public static async remind(databaseEntry: Reminder) {
-        let channel = await global.bot.getDMChannel(databaseEntry.userID);
-        global.bot.createMessage(channel.id, {
-            content: `I'm here to remind you to **${databaseEntry.text}**. Have a great day!`, //Randomize this eventually.
-        });
-        databaseEntry.destroy();
+    public static async getapi(url: string): Promise<[]> {
+        const response = await axios.get(url);
+        var data: [] = await response.data;
+        return data;
     }
 }

@@ -25,5 +25,6 @@ module global {
     export const devServerId: string = config.devGuild;
     export const loggingChannelId: string = config.loggingChannelId;
     export let absoluteStartTime: number;
+    export let quotes: [];
 }
 export default global;
