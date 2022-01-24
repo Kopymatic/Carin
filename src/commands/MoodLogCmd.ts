@@ -11,7 +11,7 @@ export default class MoodLogCmd extends SlashCommand {
             "Log your mood. The bot will remember it so you can look back on how you've been doing.";
 
         let max: any = 10;
-        let min: any = 1; //Weird bullshittery why do i have to do this
+        let min: any = -10; //Weird bullshittery why do i have to do this
         this.options = [
             {
                 name: "rating",
