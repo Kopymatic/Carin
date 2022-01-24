@@ -3,6 +3,7 @@ import { CommandOptionTypes, ResponseFlags } from "../utils/CommandUtils";
 import SlashCommand from "../utils/SlashCommand";
 import global from "../global";
 import { Reminder } from "../models";
+import InteractionUtils from "../utils/InteratctionUtils";
 
 export default class ReminderCmd extends SlashCommand {
     constructor() {
@@ -28,13 +29,8 @@ export default class ReminderCmd extends SlashCommand {
             },
         ];
         this.onRun = async (interaction) => {
-            let options: any = interaction.data.options;
-            let user: Eris.Member | Eris.User;
-            if (interaction.member == undefined || interaction.member == null) {
-                user = interaction.user;
-            } else {
-                user = interaction.member;
-            }
+            let options = InteractionUtils.getOptions(interaction);
+            let user = InteractionUtils.getUser(interaction);
 
             let text = options[1].value;
             let time = options[0].value * 60000;

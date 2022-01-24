@@ -7,6 +7,7 @@ import DeleteLogCmd from "./deleteLogCmd";
 import EditCmd from "./EditCmd";
 import WaterCheckCmd from "./WaterCheckCmd";
 import ReminderCmd from "./ReminderCmd";
+import QuoteCmd from "./QuoteCmd";
 
 const commands: SlashCommand[] = [
     new Ping(),
@@ -17,6 +18,7 @@ const commands: SlashCommand[] = [
     new EditCmd(),
     new WaterCheckCmd(),
     new ReminderCmd(),
+    new QuoteCmd(),
 ];
 
 export default commands;
