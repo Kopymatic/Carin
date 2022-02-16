@@ -136,15 +136,19 @@ bot.on("shardReady", (id) => {
 //If the bot encounters an error, log it in a configured logging channel.
 bot.on("error", (err) => {
     console.error(err);
-    bot.createMessage(global.loggingChannelId, {
-        embeds: [
-            {
-                title: `${global.name} encountered an error!`,
-                description: `\`\`\`${err.name}\n${err.message}\n${err.stack}\`\`\``,
-                color: global.red,
-            },
-        ],
-    });
+    try {
+        bot.createMessage(global.loggingChannelId, {
+            embeds: [
+                {
+                    title: `${global.name} encountered an error!`,
+                    description: `\`\`\`${err.name}\n${err.message}\n${err.stack}\`\`\``,
+                    color: global.red,
+                },
+            ],
+        });
+    } catch (error) {
+        console.error(error);
+    }
 });
 
 //Executed when we recieve an interaction, such as a slash command or button press

@@ -1,27 +1,23 @@
-import Eris from "eris";
-import { CommandOptionTypes, ResponseFlags } from "../utils/CommandUtils";
 import SlashCommand from "../utils/SlashCommand";
 import global from "../global";
-import { Reminder } from "../models";
 import InteractionUtils from "../utils/InteratctionUtils";
 import axios from "axios";
 import { randomInt } from "crypto";
 
-export default class ReminderCmd extends SlashCommand {
+export default class QuoteCmd extends SlashCommand {
     constructor() {
         super();
         this.name = "Quote";
         this.description = "Sends a random quote";
-        let min: any = 1;
-        let max: any = 10080;
         this.options = [];
         this.onRun = async (interaction) => {
+            await interaction.acknowledge();
             let options = InteractionUtils.getOptions(interaction);
             let user = InteractionUtils.getUser(interaction);
 
             let quote: any = global.quotes[randomInt(global.quotes.length)];
 
-            interaction.createMessage({
+            interaction.createFollowup({
                 embeds: [
                     {
                         description: `${quote.q}\n-${quote.a}`,
